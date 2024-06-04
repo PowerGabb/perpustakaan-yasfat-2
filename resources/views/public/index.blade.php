@@ -48,7 +48,7 @@
                             <p class="card-text">{{ $item->description }}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <a href="" class="btn btn-primary btn-sm">Selengkapnya</a>
+                            <a href="/book/{{ $item->id }}" class="btn btn-primary btn-sm">Selengkapnya</a>
                             <small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
                         </div>
 

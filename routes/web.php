@@ -63,17 +63,17 @@ Route::middleware(['auth', 'only-admin'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/book', [HomeController::class, 'listBook']);
+    Route::get('/book', [HomeController::class, 'listBook'])->middleware('except-admin');
     Route::get('/book/{id}', [HomeController::class, 'book'])->name('book');
     
-    Route::get('/profile', [AccountController::class, 'index'])->name('profile');
+    Route::get('/profile', [AccountController::class, 'index'])->name('profile')->middleware('except-admin');
     Route::get('/profile/edit', [AccountController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [AccountController::class, 'update'])->name('profile.update');
 
     Route::get('/pinjam/buku/{id}', [AccountController::class, 'pinjam'])->name('pinjam');
     Route::get('/pinjam/buku/{id}/sekarang', [AccountController::class, 'pinjamNow'])->name('pinjam.now');
 
-    Route::get('/pinjamanku', [AccountController::class, 'rents'])->name('rents');
+    Route::get('/pinjamanku', [AccountController::class, 'rents'])->name('rents')->middleware('except-admin');
 
 });
 

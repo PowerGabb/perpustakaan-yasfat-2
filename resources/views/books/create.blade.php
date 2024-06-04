@@ -8,7 +8,7 @@
                 <small class="text-muted float-end"></small>
             </div>
             <div class="card-body">
-                <form action="/books" method="POST" enctype="multipart/form-data">
+                <form action="/books" method="POST" enctype="multipart/form-data" id="bookForm">
                     @csrf
 
                     <div class="row mb-3">
@@ -71,64 +71,65 @@
                         </div>
                     </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Category</label>
-                            <div class="col-sm-10">
-                                <select class="inputbox form-select" name="categories[]" multiple>
-                                    @foreach ($categories as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                    @endforeach
-                                </select>
-                                @error('categories')
-                                    <p class="text-danger pt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Category</label>
+                        <div class="col-sm-10">
+                            <select class="inputbox form-select" name="categories[]" multiple>
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('categories')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Stok Buku</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="jumlah" class="form-control">
+                            @error('jumlah')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Cover Buku</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" id="basic-default-name" name="cover">
+                            @error('cover')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Deskripsi Buku</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" id="" cols="40" class="form-control" rows="5"></textarea>
+                            @error('description')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Kode Buku</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="basic-default-name" id="book_code"
+                                name="book_code">
+                            @error('book_code')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                    </div>
 
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Stok Buku</label>
-                            <div class="col-sm-10">
-                                <input type="number" name="jumlah" class="form-control">
-                                @error('jumlah')
-                                    <p class="text-danger pt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Cover Buku</label>
-                            <div class="col-sm-10">
-                                <input type="file" class="form-control" id="basic-default-name" name="cover">
-                                @error('cover')
-                                    <p class="text-danger pt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Deskripsi Buku</label>
-                            <div class="col-sm-10">
-                                <textarea name="description" id="" cols="40" class="form-control" rows="5"></textarea>
-                                @error('description')
-                                    <p class="text-danger pt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Kode Buku</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="basic-default-name" name="book_code">
-                                @error('book_code')
-                                    <p class="text-danger pt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="submitButton">Simpan</button>
                 </form>
             </div>
         </div>
@@ -161,7 +162,14 @@
     <!-- jQuery -->
 
     <!-- Your script -->
-
+    <script>
+        document.getElementById('bookForm').addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
 
 
 @endsection

@@ -26,14 +26,16 @@
         }
     </style>
 
+<link rel="icon" type="image/x-icon" href="{{ asset('fatahillah.png') }}">
+
     <title>@yield('title', 'Perpustakaan')</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-4 fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning p-4 fixed-top">
         <div class="container">
-            <a href="#home" class="fs-3 fw-bold navbar-brand">FatPerpus.</a>
+            <a href="#home" class="fs-3 fw-bold navbar-brand">Fatahillah.</a>
             <button aria-controls="basic-navbar-nav" type="button" aria-label="Toggle navigation"
                     class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#basic-navbar-nav">
                 <span class="navbar-toggler-icon"></span>
@@ -41,18 +43,18 @@
             <div class="navbar-collapse justify-content-center" id="basic-navbar-nav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" aria-current="page" href="/">Home</a>
+                      <a class="nav-link fs-5 {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="/book">Buku</a>
+                      <a class="nav-link fs-5 {{ Request::is('book') ? 'active' : '' }}" href="/book">Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="/pinjamanku">Pinjamanku</a>
+                      <a class="nav-link fs-5 {{ Request::is('pinjamanku') ? 'active' : '' }}" href="/pinjamanku">Pinjamanku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="/profile">Profile</a>
+                      <a class="nav-link fs-5 {{ Request::is('profile') ? 'active' : '' }}" href="/profile">Profile</a>
                     </li>
-                </ul>
+                  </ul>                  
             </div>
         </div>
         <div class="text-center navbar-collapse collapse ">

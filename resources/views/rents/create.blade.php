@@ -23,7 +23,7 @@
                             <select name="user_id" id="user" class="form-select inputbox">
                                 <option value="">Select User</option>
                                 @foreach ($students as $items)
-                                    <option value="{{ $items->id }}">{{ Str::ucfirst($items->name) }}</option>
+                                    <option value="{{ $items->id }}">{{ Str::ucfirst($items->name) }} - {{ $items->class }}</option>
                                 @endforeach
                             </select>
                         </div>
